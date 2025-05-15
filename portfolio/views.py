@@ -1,17 +1,19 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .forms import ContactForm
 
 
 def index(request):
-    return HttpResponse("Hello, world. Welcome to my portfolio!")
-
-def resume(request):
-    return HttpResponse("This is my resume page.")
+    return render(request, "portfolio/index.html")
 
 def about(request):
-    return HttpResponse("This is the about page.")
+    return render(request, "portfolio/about.html")
 
 def contact(request):
-    return HttpResponse("This is the contact page.")
+    form = ContactForm()
+    context = {
+        'form': form,
+    }
+    return render(request, "portfolio/contact.html", context)
 
 def work(request):
-    return HttpResponse("This is the projects page.")
+    return render(request, "portfolio/work.html")
